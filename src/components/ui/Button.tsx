@@ -1,16 +1,19 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { LoadingSpinner } from './LoadingSpinner';
 import { clsx } from 'clsx';
+import { motion } from 'framer-motion';
+import React from 'react';
+import { LoadingSpinner } from './LoadingSpinner';
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+// Define the motion props type we want, excluding the event handlers that conflict
+type MotionProps = Omit<React.ComponentProps<typeof motion.button>, 'onAnimationStart' | 'onDrag' | 'onDragStart' | 'onDragEnd' | 'style'>;
+
+interface ButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'onAnimationStart' | 'onDrag' | 'onDragStart' | 'onDragEnd' | 'style'> {
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
   size?: 'sm' | 'md' | 'lg';
   isLoading?: boolean;
   children: React.ReactNode;
 }
 
-export const Button: React.FC<ButtonProps> = ({
+export const Button: React.FC<ButtonProps & MotionProps> = ({
   variant = 'primary',
   size = 'md',
   isLoading = false,
@@ -20,7 +23,7 @@ export const Button: React.FC<ButtonProps> = ({
   ...props
 }) => {
   const baseClasses = 'inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900';
-  
+
   const variantClasses = {
     primary: 'bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white focus:ring-blue-500',
     secondary: 'bg-gray-700 hover:bg-gray-600 text-white focus:ring-gray-500',

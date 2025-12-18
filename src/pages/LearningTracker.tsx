@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Plus, 
-  BookOpen, 
-  Calendar, 
-  Target, 
+import { format } from 'date-fns';
+import { AnimatePresence, motion } from 'framer-motion';
+import {
   Award,
-  TrendingUp,
-  Clock,
+  BookOpen,
+  Calendar,
   CheckCircle2,
   Circle,
+  Clock,
   Flame,
-  Star
+  Plus,
+  Star,
+  Target,
+  TrendingUp
 } from 'lucide-react';
-import { Card } from '../components/ui/Card';
+import React, { useState } from 'react';
 import { Button } from '../components/ui/Button';
-import { format } from 'date-fns';
+import { Card } from '../components/ui/Card';
 
 interface LearningGoal {
   id: string;
@@ -36,7 +36,7 @@ interface Milestone {
 }
 
 export const LearningTracker: React.FC = () => {
-  const [showAddGoal, setShowAddGoal] = useState(false);
+  const [, setShowAddGoal] = useState(false);
   const [selectedGoal, setSelectedGoal] = useState<string | null>(null);
 
   const learningGoals: LearningGoal[] = [
@@ -88,7 +88,7 @@ export const LearningTracker: React.FC = () => {
   ];
 
   const streak = 15;
-  const totalGoals = learningGoals.length;
+
   const completedGoals = learningGoals.filter(goal => goal.status === 'completed').length;
   const activeGoals = learningGoals.filter(goal => goal.status === 'active').length;
 
@@ -239,24 +239,22 @@ export const LearningTracker: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.8 + index * 0.1 }}
                 >
-                  <Card 
-                    hover 
+                  <Card
+                    hover
                     onClick={() => setSelectedGoal(selectedGoal === goal.id ? null : goal.id)}
                     className="cursor-pointer"
                   >
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center">
-                        <div className={`w-3 h-3 rounded-full mr-3 ${
-                          goal.status === 'completed' ? 'bg-green-500' :
+                        <div className={`w-3 h-3 rounded-full mr-3 ${goal.status === 'completed' ? 'bg-green-500' :
                           goal.status === 'active' ? 'bg-blue-500' : 'bg-gray-500'
-                        }`}></div>
+                          }`}></div>
                         <h3 className="text-xl font-semibold text-white">{goal.title}</h3>
                       </div>
-                      <span className={`px-3 py-1 text-xs rounded-full ${
-                        goal.status === 'completed' ? 'bg-green-500/20 text-green-400' :
+                      <span className={`px-3 py-1 text-xs rounded-full ${goal.status === 'completed' ? 'bg-green-500/20 text-green-400' :
                         goal.status === 'active' ? 'bg-blue-500/20 text-blue-400' :
-                        'bg-gray-500/20 text-gray-400'
-                      }`}>
+                          'bg-gray-500/20 text-gray-400'
+                        }`}>
                         {goal.technology}
                       </span>
                     </div>
@@ -273,10 +271,9 @@ export const LearningTracker: React.FC = () => {
 
                     <div className="flex items-center space-x-2 mb-4">
                       <div className="flex-1 bg-gray-700 rounded-full h-2">
-                        <div 
-                          className={`h-2 rounded-full transition-all duration-300 ${
-                            goal.status === 'completed' ? 'bg-green-500' : 'bg-gradient-to-r from-blue-500 to-purple-500'
-                          }`}
+                        <div
+                          className={`h-2 rounded-full transition-all duration-300 ${goal.status === 'completed' ? 'bg-green-500' : 'bg-gradient-to-r from-blue-500 to-purple-500'
+                            }`}
                           style={{ width: `${goal.progress}%` }}
                         ></div>
                       </div>
@@ -342,12 +339,12 @@ export const LearningTracker: React.FC = () => {
                   Weekly Progress
                 </h3>
                 <div className="space-y-3">
-                  {weeklyProgress.map((day, index) => (
+                  {weeklyProgress.map((day) => (
                     <div key={day.day} className="flex items-center justify-between">
                       <span className="text-gray-300 text-sm">{day.day}</span>
                       <div className="flex items-center space-x-2">
                         <div className="w-20 bg-gray-700 rounded-full h-2">
-                          <div 
+                          <div
                             className="bg-gradient-to-r from-green-500 to-blue-500 h-2 rounded-full"
                             style={{ width: `${(day.hours / 4) * 100}%` }}
                           ></div>

@@ -1,21 +1,20 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { 
-  BookOpen, 
-  Trophy, 
-  Users, 
-  Code2, 
-  TrendingUp,
+import {
+  Activity,
+  BookOpen,
   Calendar,
+  Code2,
   Star,
   Target,
-  Award,
-  Activity
+  TrendingUp,
+  Trophy,
+  Users
 } from 'lucide-react';
-import { useAuth } from '../contexts/AuthContext';
-import { Card } from '../components/ui/Card';
+import React from 'react';
+import { Bar, BarChart, CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { Button } from '../components/ui/Button';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
+import { Card } from '../components/ui/Card';
+import { useAuth } from '../contexts/AuthContext';
 
 export const Dashboard: React.FC = () => {
   const { user } = useAuth();
@@ -125,9 +124,9 @@ export const Dashboard: React.FC = () => {
                   <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
                   <XAxis dataKey="day" stroke="#9CA3AF" />
                   <YAxis stroke="#9CA3AF" />
-                  <Tooltip 
-                    contentStyle={{ 
-                      backgroundColor: '#1F2937', 
+                  <Tooltip
+                    contentStyle={{
+                      backgroundColor: '#1F2937',
                       border: '1px solid #374151',
                       borderRadius: '8px'
                     }}
@@ -155,17 +154,17 @@ export const Dashboard: React.FC = () => {
                   <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
                   <XAxis dataKey="month" stroke="#9CA3AF" />
                   <YAxis stroke="#9CA3AF" />
-                  <Tooltip 
-                    contentStyle={{ 
-                      backgroundColor: '#1F2937', 
+                  <Tooltip
+                    contentStyle={{
+                      backgroundColor: '#1F2937',
                       border: '1px solid #374151',
                       borderRadius: '8px'
                     }}
                   />
-                  <Line 
-                    type="monotone" 
-                    dataKey="progress" 
-                    stroke="#10B981" 
+                  <Line
+                    type="monotone"
+                    dataKey="progress"
+                    stroke="#10B981"
                     strokeWidth={3}
                     dot={{ fill: '#10B981', strokeWidth: 2, r: 4 }}
                   />
@@ -191,22 +190,21 @@ export const Dashboard: React.FC = () => {
                 <Button variant="ghost" size="sm">View All</Button>
               </div>
               <div className="space-y-4">
-                {recentProjects.map((project, index) => (
+                {recentProjects.map((project) => (
                   <div key={project.name} className="bg-gray-700/30 rounded-lg p-4">
                     <div className="flex items-center justify-between mb-2">
                       <h4 className="font-semibold text-white">{project.name}</h4>
-                      <span className={`px-2 py-1 text-xs rounded-full ${
-                        project.status === 'Completed' 
-                          ? 'bg-green-500/20 text-green-400' 
+                      <span className={`px-2 py-1 text-xs rounded-full ${project.status === 'Completed'
+                          ? 'bg-green-500/20 text-green-400'
                           : 'bg-yellow-500/20 text-yellow-400'
-                      }`}>
+                        }`}>
                         {project.status}
                       </span>
                     </div>
                     <p className="text-gray-400 text-sm mb-3">{project.tech}</p>
                     <div className="flex items-center space-x-2">
                       <div className="flex-1 bg-gray-600 rounded-full h-2">
-                        <div 
+                        <div
                           className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full transition-all duration-300"
                           style={{ width: `${project.progress}%` }}
                         ></div>
@@ -234,17 +232,16 @@ export const Dashboard: React.FC = () => {
                 <Button variant="ghost" size="sm">View All</Button>
               </div>
               <div className="space-y-4">
-                {upcomingChallenges.map((challenge, index) => (
+                {upcomingChallenges.map((challenge) => (
                   <div key={challenge.title} className="bg-gray-700/30 rounded-lg p-4">
                     <div className="flex items-center justify-between mb-2">
                       <h4 className="font-semibold text-white">{challenge.title}</h4>
-                      <span className={`px-2 py-1 text-xs rounded-full ${
-                        challenge.difficulty === 'Easy' 
+                      <span className={`px-2 py-1 text-xs rounded-full ${challenge.difficulty === 'Easy'
                           ? 'bg-green-500/20 text-green-400'
                           : challenge.difficulty === 'Medium'
-                          ? 'bg-yellow-500/20 text-yellow-400'
-                          : 'bg-red-500/20 text-red-400'
-                      }`}>
+                            ? 'bg-yellow-500/20 text-yellow-400'
+                            : 'bg-red-500/20 text-red-400'
+                        }`}>
                         {challenge.difficulty}
                       </span>
                     </div>

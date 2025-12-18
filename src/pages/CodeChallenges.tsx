@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { 
-  Trophy, 
-  Clock, 
-  Code2, 
-  Play, 
-  Star, 
-  Medal,
-  TrendingUp,
-  Calendar,
-  Users,
-  Target
-} from 'lucide-react';
-import { Card } from '../components/ui/Card';
-import { Button } from '../components/ui/Button';
 import { format } from 'date-fns';
+import { motion } from 'framer-motion';
+import {
+  Calendar,
+  Clock,
+  Code2,
+  Medal,
+  Play,
+  Star,
+  Target,
+  TrendingUp,
+  Trophy,
+  Users
+} from 'lucide-react';
+import React, { useState } from 'react';
+import { Button } from '../components/ui/Button';
+import { Card } from '../components/ui/Card';
 
 interface Challenge {
   id: string;
@@ -324,7 +324,7 @@ export const CodeChallenges: React.FC = () => {
                           </span>
                         </div>
                         <p className="text-gray-300 mb-4">{challenge.description}</p>
-                        
+
                         {/* Tags */}
                         <div className="flex flex-wrap gap-2 mb-4">
                           {challenge.tags.map(tag => (
@@ -357,7 +357,7 @@ export const CodeChallenges: React.FC = () => {
                           </div>
                         </div>
                       </div>
-                      
+
                       <div className="ml-4">
                         <Button>
                           <Play className="w-4 h-4 mr-2" />
@@ -373,7 +373,7 @@ export const CodeChallenges: React.FC = () => {
                       </div>
                       <div className="flex items-center space-x-2">
                         <div className="w-20 bg-gray-700 rounded-full h-2">
-                          <div 
+                          <div
                             className="bg-gradient-to-r from-green-500 to-blue-500 h-2 rounded-full"
                             style={{ width: `${challenge.successRate}%` }}
                           ></div>
@@ -428,7 +428,7 @@ export const CodeChallenges: React.FC = () => {
                   Leaderboard
                 </h3>
                 <div className="space-y-4">
-                  {leaderboard.map((entry, index) => (
+                  {leaderboard.map((entry) => (
                     <div key={entry.rank} className="flex items-center justify-between">
                       <div className="flex items-center">
                         <div className="mr-3">

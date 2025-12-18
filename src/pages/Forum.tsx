@@ -1,23 +1,20 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { 
-  Plus, 
-  MessageSquare, 
-  ArrowUp, 
-  ArrowDown, 
-  Eye, 
-  Clock,
-  Tag,
-  Search,
-  Filter,
-  Star,
-  CheckCircle2,
-  User,
-  Calendar
-} from 'lucide-react';
-import { Card } from '../components/ui/Card';
-import { Button } from '../components/ui/Button';
 import { format } from 'date-fns';
+import { motion } from 'framer-motion';
+import {
+  ArrowDown,
+  ArrowUp,
+  CheckCircle2,
+  Clock,
+  Eye,
+  MessageSquare,
+  Plus,
+  Search,
+  Star,
+  Tag
+} from 'lucide-react';
+import React, { useState } from 'react';
+import { Button } from '../components/ui/Button';
+import { Card } from '../components/ui/Card';
 
 interface ForumPost {
   id: string;
@@ -164,13 +161,13 @@ export const Forum: React.FC = () => {
 
   const filteredPosts = forumPosts.filter(post => {
     const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         post.content.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         post.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
-    
-    const matchesTag = selectedTag === 'all' || post.tags.some(tag => 
+      post.content.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      post.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
+
+    const matchesTag = selectedTag === 'all' || post.tags.some(tag =>
       tag.toLowerCase() === selectedTag.toLowerCase()
     );
-    
+
     return matchesSearch && matchesTag;
   }).sort((a, b) => {
     switch (sortBy) {
@@ -189,13 +186,13 @@ export const Forum: React.FC = () => {
     setVotedPosts(prev => {
       const newMap = new Map(prev);
       const currentVote = newMap.get(postId);
-      
+
       if (currentVote === voteType) {
         newMap.delete(postId);
       } else {
         newMap.set(postId, voteType);
       }
-      
+
       return newMap;
     });
   };
@@ -262,7 +259,7 @@ export const Forum: React.FC = () => {
                   className="w-full pl-10 pr-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white placeholder-gray-400"
                 />
               </div>
-              
+
               <div className="flex gap-2">
                 <select
                   value={selectedTag}
@@ -274,7 +271,7 @@ export const Forum: React.FC = () => {
                     <option key={tag} value={tag}>{tag}</option>
                   ))}
                 </select>
-                
+
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
@@ -374,11 +371,10 @@ export const Forum: React.FC = () => {
                               <div className="flex items-center">
                                 <p className="text-white text-sm font-medium">{post.author.name}</p>
                                 {post.author.badge && (
-                                  <span className={`ml-2 px-2 py-0.5 text-xs rounded-full ${
-                                    post.author.badge === 'Expert' ? 'bg-purple-500/20 text-purple-400' :
-                                    post.author.badge === 'Mentor' ? 'bg-green-500/20 text-green-400' :
-                                    'bg-gray-500/20 text-gray-400'
-                                  }`}>
+                                  <span className={`ml-2 px-2 py-0.5 text-xs rounded-full ${post.author.badge === 'Expert' ? 'bg-purple-500/20 text-purple-400' :
+                                      post.author.badge === 'Mentor' ? 'bg-green-500/20 text-green-400' :
+                                        'bg-gray-500/20 text-gray-400'
+                                    }`}>
                                     {post.author.badge}
                                   </span>
                                 )}
@@ -436,11 +432,10 @@ export const Forum: React.FC = () => {
                     <button
                       key={tag}
                       onClick={() => setSelectedTag(tag)}
-                      className={`px-3 py-1 rounded-full text-sm transition-colors ${
-                        selectedTag === tag
+                      className={`px-3 py-1 rounded-full text-sm transition-colors ${selectedTag === tag
                           ? 'bg-blue-500 text-white'
                           : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
-                      }`}
+                        }`}
                     >
                       {tag}
                     </button>

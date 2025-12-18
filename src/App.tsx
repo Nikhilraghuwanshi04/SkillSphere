@@ -1,17 +1,17 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { AuthProvider } from './contexts/AuthContext';
+
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { ProtectedRoute } from './components/auth/ProtectedRoute';
 import { Navbar } from './components/layout/NavBar';
-import { LandingPage } from './pages/LandingPage';
+import { AuthProvider } from './contexts/AuthContext';
 import { LoginPage } from './pages/auth/LoginPage';
 import { SignupPage } from './pages/auth/SignupPage';
-import { Dashboard } from './pages/Dashboard';
-import { LearningTracker } from './pages/LearningTracker';
-import { ProjectShowcase } from './pages/ProjectShowcase';
 import { CodeChallenges } from './pages/CodeChallenges';
+import { Dashboard } from './pages/Dashboard';
 import { Forum } from './pages/Forum';
+import { LandingPage } from './pages/LandingPage';
+import { LearningTracker } from './pages/LearningTracker';
 import { Profile } from './pages/Profile';
-import { ProtectedRoute } from './components/auth/ProtectedRoute';
+import { ProjectShowcase } from './pages/ProjectShowcase';
 
 function App() {
   return (

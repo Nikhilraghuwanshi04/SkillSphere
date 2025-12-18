@@ -1,21 +1,20 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { 
-  Plus, 
-  Heart, 
-  MessageCircle, 
-  ExternalLink, 
-  Github, 
-  Filter,
-  Search,
-  Star,
-  Eye,
-  Calendar,
-  User
-} from 'lucide-react';
-import { Card } from '../components/ui/Card';
-import { Button } from '../components/ui/Button';
 import { format } from 'date-fns';
+import { motion } from 'framer-motion';
+import {
+  Calendar,
+  ExternalLink,
+  Eye,
+  Filter,
+  Github,
+  Heart,
+  MessageCircle,
+  Plus,
+  Search,
+  Star
+} from 'lucide-react';
+import React, { useState } from 'react';
+import { Button } from '../components/ui/Button';
+import { Card } from '../components/ui/Card';
 
 interface Project {
   id: string;
@@ -163,12 +162,12 @@ export const ProjectShowcase: React.FC = () => {
 
   const filteredProjects = projects.filter(project => {
     const matchesSearch = project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         project.techStack.some(tech => tech.toLowerCase().includes(searchQuery.toLowerCase()));
-    
+      project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      project.techStack.some(tech => tech.toLowerCase().includes(searchQuery.toLowerCase()));
+
     if (selectedFilter === 'all') return matchesSearch;
     if (selectedFilter === 'featured') return matchesSearch && project.featured;
-    return matchesSearch && project.techStack.some(tech => 
+    return matchesSearch && project.techStack.some(tech =>
       tech.toLowerCase().includes(selectedFilter.toLowerCase())
     );
   });
@@ -238,7 +237,7 @@ export const ProjectShowcase: React.FC = () => {
               />
             </div>
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -349,8 +348,8 @@ export const ProjectShowcase: React.FC = () => {
                         onClick={() => toggleLike(project.id)}
                         className="flex items-center space-x-1 text-gray-400 hover:text-red-400 transition-colors"
                       >
-                        <Heart 
-                          className={`w-5 h-5 ${likedProjects.has(project.id) ? 'fill-current text-red-400' : ''}`} 
+                        <Heart
+                          className={`w-5 h-5 ${likedProjects.has(project.id) ? 'fill-current text-red-400' : ''}`}
                         />
                         <span className="text-sm">{project.likes}</span>
                       </button>

@@ -1,17 +1,16 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
-import { 
-  Code2, 
-  Users, 
-  Trophy, 
-  BookOpen, 
-  Github, 
+import {
+  ArrowRight,
+  BookOpen,
+  Code2,
+  Github,
   MessageSquare,
   Star,
-  ArrowRight,
-  CheckCircle
+  Trophy,
+  Users
 } from 'lucide-react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
 
@@ -93,7 +92,7 @@ export const LandingPage: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="mt-6 text-xl sm:text-2xl text-gray-300 max-w-3xl mx-auto"
             >
-              The ultimate platform for developers to learn, connect, and grow together. 
+              The ultimate platform for developers to learn, connect, and grow together.
               Join thousands of developers building the future.
             </motion.p>
             <motion.div
@@ -268,7 +267,7 @@ export const LandingPage: React.FC = () => {
               Ready to Level Up Your Development Skills?
             </h2>
             <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              Join SkillSphere today and connect with a community of passionate developers 
+              Join SkillSphere today and connect with a community of passionate developers
               who are building the future together.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

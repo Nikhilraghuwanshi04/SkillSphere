@@ -1,26 +1,25 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { 
-  User, 
-  Mail, 
-  Github, 
-  Linkedin, 
-  MapPin, 
-  Calendar,
-  Edit3,
-  Save,
-  X,
-  Trophy,
-  Code2,
-  BookOpen,
-  Users,
-  Star,
-  Activity
-} from 'lucide-react';
-import { useAuth } from '../contexts/AuthContext';
-import { Card } from '../components/ui/Card';
-import { Button } from '../components/ui/Button';
 import { format } from 'date-fns';
+import { motion } from 'framer-motion';
+import {
+  Activity,
+  BookOpen,
+  Calendar,
+  Code2,
+  Edit3,
+  Github,
+  Linkedin,
+  MapPin,
+  Save,
+  Star,
+  Trophy,
+  User,
+  Users,
+  X
+} from 'lucide-react';
+import React, { useState } from 'react';
+import { Button } from '../components/ui/Button';
+import { Card } from '../components/ui/Card';
+import { useAuth } from '../contexts/AuthContext';
 
 export const Profile: React.FC = () => {
   const { user, updateProfile } = useAuth();
@@ -193,7 +192,7 @@ export const Profile: React.FC = () => {
                       <span className="text-gray-300">San Francisco, CA</span>
                     )}
                   </div>
-                  
+
                   <div className="flex items-center">
                     <Github className="w-5 h-5 text-gray-400 mr-3" />
                     {isEditing ? (
@@ -210,7 +209,7 @@ export const Profile: React.FC = () => {
                       </a>
                     )}
                   </div>
-                  
+
                   <div className="flex items-center">
                     <Linkedin className="w-5 h-5 text-gray-400 mr-3" />
                     {isEditing ? (
@@ -242,7 +241,7 @@ export const Profile: React.FC = () => {
             >
               <h2 className="text-2xl font-semibold text-white mb-6">Your Stats</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {stats.map((stat, index) => {
+                {stats.map((stat) => {
                   const Icon = stat.icon;
                   return (
                     <Card key={stat.label} hover className="relative overflow-hidden">
@@ -270,20 +269,18 @@ export const Profile: React.FC = () => {
             >
               <h2 className="text-2xl font-semibold text-white mb-6">Achievements</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {achievements.map((achievement, index) => {
+                {achievements.map((achievement) => {
                   const Icon = achievement.icon;
                   return (
-                    <Card 
-                      key={achievement.title} 
-                      className={`relative overflow-hidden ${
-                        achievement.earned ? 'border-yellow-500/30' : 'opacity-60'
-                      }`}
+                    <Card
+                      key={achievement.title}
+                      className={`relative overflow-hidden ${achievement.earned ? 'border-yellow-500/30' : 'opacity-60'
+                        }`}
                     >
                       <div className={`absolute inset-0 bg-gradient-to-r ${achievement.color} opacity-${achievement.earned ? '10' : '5'}`}></div>
                       <div className="relative flex items-center">
-                        <div className={`w-12 h-12 bg-gradient-to-r ${achievement.color} rounded-lg flex items-center justify-center mr-4 ${
-                          !achievement.earned ? 'grayscale' : ''
-                        }`}>
+                        <div className={`w-12 h-12 bg-gradient-to-r ${achievement.color} rounded-lg flex items-center justify-center mr-4 ${!achievement.earned ? 'grayscale' : ''
+                          }`}>
                           <Icon className="w-6 h-6 text-white" />
                         </div>
                         <div className="flex-1">
